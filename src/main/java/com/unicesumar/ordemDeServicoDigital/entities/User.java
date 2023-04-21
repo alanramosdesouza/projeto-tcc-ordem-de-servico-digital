@@ -1,12 +1,15 @@
 package com.unicesumar.ordemDeServicoDigital.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +23,9 @@ public class User implements Serializable{
 	private String senha;
 	private String name;
 	private String turno;
+	
+	@OneToMany(mappedBy = "solicitante")
+	private List<Solicitacao> solicitacoes = new ArrayList<>();
 	
 	public User() {
 		
@@ -64,6 +70,10 @@ public class User implements Serializable{
 	public void setTurno(String turno) {
 		this.turno = turno;
 	}
+	
+	public List<Solicitacao> getSolicitacoes() {
+		return solicitacoes;
+	}
 
 	@Override
 	public int hashCode() {
@@ -81,6 +91,8 @@ public class User implements Serializable{
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
 	
 	
 	
