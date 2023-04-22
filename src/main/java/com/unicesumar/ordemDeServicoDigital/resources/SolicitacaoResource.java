@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.unicesumar.ordemDeServicoDigital.entities.User;
-import com.unicesumar.ordemDeServicoDigital.services.UserService;
+import com.unicesumar.ordemDeServicoDigital.entities.Solicitacao;
+import com.unicesumar.ordemDeServicoDigital.services.SolicitacaoService;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserResource {
+@RequestMapping(value = "/solicitacoes")
+public class SolicitacaoResource {
 	
 	@Autowired
-	private UserService service;
+	private SolicitacaoService service;
 	@GetMapping
-	public ResponseEntity<List<User>> findALL(){
-		List<User> list = service.findAll();
+	public ResponseEntity<List<Solicitacao>> findALL(){
+		List<Solicitacao> list = service.findAll();
 		
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public  ResponseEntity<User> findById(@PathVariable Long id){
-		User obj = service.findById(id);
+	public  ResponseEntity<Solicitacao> findById(@PathVariable Long id){
+		Solicitacao obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 		
 	}
