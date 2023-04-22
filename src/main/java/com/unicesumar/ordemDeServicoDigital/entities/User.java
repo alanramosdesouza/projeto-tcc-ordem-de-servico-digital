@@ -25,6 +25,7 @@ public class User implements Serializable{
 	private String senha;
 	private String name;
 	private String turno;
+	private String setor;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "solicitante")
@@ -34,12 +35,13 @@ public class User implements Serializable{
 		
 	}
 
-	public User(Long id, String senha, String name, String turno) {
+	public User(Long id, String senha, String name, String turno, String setor) {
 		super();
 		this.id = id;
 		this.senha = senha;
 		this.name = name;
 		this.turno = turno;
+		this.setor = setor;
 	}
 
 	public Long getId() {
@@ -73,6 +75,14 @@ public class User implements Serializable{
 	public void setTurno(String turno) {
 		this.turno = turno;
 	}
+	
+	public String getSetor() {
+		return setor;
+	}
+
+	public void setSetor(String setor) {
+		this.setor = setor;
+	}	
 	
 	public List<Solicitacao> getSolicitacoes() {
 		return solicitacoes;

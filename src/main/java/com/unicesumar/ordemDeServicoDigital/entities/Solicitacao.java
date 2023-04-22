@@ -23,7 +23,7 @@ public class Solicitacao implements Serializable {
 	private Long id;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private Instant moment;
+	private Instant data;
 	
 	private Integer statusSolicitacao;
 	
@@ -35,10 +35,10 @@ public class Solicitacao implements Serializable {
 	public Solicitacao() {
 	}
 
-	public Solicitacao(Long id, Instant moment, StatusSolicitacao statusSolicitacao, User solicitante) {
+	public Solicitacao(Long id, Instant data, StatusSolicitacao statusSolicitacao, User solicitante) {
 		super();
 		this.id = id;
-		this.moment = moment;
+		this.data = data;
 		setStatusSolicitacao(statusSolicitacao);
 		this.solicitante = solicitante;
 	}
@@ -51,12 +51,12 @@ public class Solicitacao implements Serializable {
 		this.id = id;
 	}
 
-	public Instant getMoment() {
-		return moment;
+	public Instant getData() {
+		return data;
 	}
 
-	public void setMoment(Instant moment) {
-		this.moment = moment;
+	public void setData(Instant data) {
+		this.data = data;
 	}
 	
 	
