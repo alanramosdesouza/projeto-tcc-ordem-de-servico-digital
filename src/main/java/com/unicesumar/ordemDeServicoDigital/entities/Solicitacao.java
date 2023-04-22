@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.unicesumar.ordemDeServicoDigital.entities.enums.StatusSolicitacao;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +24,9 @@ public class Solicitacao implements Serializable {
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
+	
+	private Integer statusSolicitacao;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "solicitante_id")
@@ -31,10 +35,11 @@ public class Solicitacao implements Serializable {
 	public Solicitacao() {
 	}
 
-	public Solicitacao(Long id, Instant moment, User solicitante) {
+	public Solicitacao(Long id, Instant moment, StatusSolicitacao statusSolicitacao, User solicitante) {
 		super();
 		this.id = id;
 		this.moment = moment;
+		setStatusSolicitacao(statusSolicitacao);
 		this.solicitante = solicitante;
 	}
 
@@ -52,6 +57,18 @@ public class Solicitacao implements Serializable {
 
 	public void setMoment(Instant moment) {
 		this.moment = moment;
+	}
+	
+	
+
+	public StatusSolicitacao getStatusSolicitacao() {
+		return StatusSolicitacao.valueOf(statusSolicitacao);
+	}
+
+	public void setStatusSolicitacao(StatusSolicitacao statusSolicitacao) {
+		if(statusSolicitacao != null) {
+			this.statusSolicitacao = statusSolicitacao.getCode();
+		}
 	}
 
 	public User getSolicitante() {
